@@ -1,0 +1,13 @@
+pydantic
+pydantic_settings
+
+requests
+
+schedule
+
+fastapi
+uvicorn
+
+paho-mqtt
+
+logger

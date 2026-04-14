@@ -1,0 +1,25 @@
+services:
+  device1:
+    build: .
+    command: python -m app.device.main 
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - devnet
+    env_file:
+      - .env
+    environment:
+      MODE: http
+
+  device2:
+    build: .
+    command: python -m app.device.main 
+    networks:
+      - devnet
+    env_file:
+      - .env
+    environment:
+      MODE: mqtt
+
+networks:
+  devnet:
