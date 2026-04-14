@@ -23,6 +23,7 @@ services:
       MODE: mqtt
       TYPE: track
       TRACK_PATH: /app/FlightAware_LVL230K_KMIA_LEBL_20260413.geojson
+      TRACK_ID: LVL230K
 
 networks:
   devnet:

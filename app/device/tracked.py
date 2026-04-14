@@ -4,10 +4,11 @@ from app.device.device import Device
 
 
 class Tracked(Device):
-    def __init__(self, path: str, endpoint: str, mode: str = "http", interval: int = 60, broker: str = "test.mosquitto.org"):
+    def __init__(self, id:str, path: str, endpoint: str, mode: str = "http", interval: int = 60, broker: str = "test.mosquitto.org"):
         Device.__init__(self, endpoint, mode, interval, broker)
 
         self.data = self.load_points(path)
+        self.id = id
 
     def load_points(self,path:str) -> list:
         with open(path, 'r') as f:
@@ -26,7 +27,9 @@ class Tracked(Device):
     def get_payload(self) -> dict | None:
         try:
             data = next(self.data)
+            
             payload = {
+                "id": self.id,
                 "longitude": data[0],
                 "latitude": data[1],
                 "altitude": data[2]

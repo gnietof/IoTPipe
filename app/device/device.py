@@ -44,7 +44,7 @@ class Device:
         ''' Perform a MQTT request'''
         try:
             self.client.publish(settings.TOPIC, json.dumps(payload))
-            logger.info(f"[OK] Message [{payload}] published to MQTT broker.")
+            logger.info(f"[OK] Message [{payload}] published to {settings.TOPIC}.")
         except Exception as e:
             logger.error(f"[ERROR] {e}")
 
@@ -53,12 +53,15 @@ class Device:
         logger.info("Starting periodic requester...")
         while self.running:
             payload = self.get_payload()
-            logger.info(f"Sending payload: {payload}")
-            if self.mode=='http':
-                self.make_http_request(payload)
-            elif self.mode=='mqtt':
-                self.make_mqtt_request(payload)
-            time.sleep(self.interval)
+            if payload is None:
+                self.stop()
+            else:
+                logger.info(f"Sending payload: {payload}")
+                if self.mode=='http':
+                    self.make_http_request(payload)
+                elif self.mode=='mqtt':
+                    self.make_mqtt_request(payload)
+                time.sleep(self.interval)
 
     def stop(self):
         logger.info("Stopping requester...")

@@ -27,6 +27,7 @@ if __name__ == "__main__":
         device = Tracked(
             # path="/home/genaro/Documents/FlightAware_LVL230K_KMIA_LEBL_20260413.geojson",
             path=os.getenv("TRACK_PATH"),
+            id=os.getenv("TRACK_ID"),
             endpoint=settings.ENDPOINT,
             interval=10,
             broker=settings.BROKER,
