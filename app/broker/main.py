@@ -40,6 +40,7 @@ def start_mqtt():
     client = mqtt.Client()
     client.on_message = on_message
     client.connect("test.mosquitto.org", 1883)
+    logger.info(f"Subscribing to topic $share/group1/{settings.TOPIC}")
     client.subscribe(f"$share/group1/{settings.TOPIC}")
     client.loop_forever()
     logger.info("MQTT client started.")

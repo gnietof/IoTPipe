@@ -10,6 +10,7 @@ services:
       - .env
     environment:
       MODE: http
+      TYPE: temp
 
   device2:
     build: .
@@ -20,6 +21,8 @@ services:
       - .env
     environment:
       MODE: mqtt
+      TYPE: track
+      TRACK_PATH: /app/FlightAware_LVL230K_KMIA_LEBL_20260413.geojson
 
 networks:
   devnet:

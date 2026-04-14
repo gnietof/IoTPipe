@@ -10,6 +10,8 @@ import logging
 
 import paho.mqtt.client as mqtt
 
+from app.settings import settings
+
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
@@ -41,8 +43,8 @@ class Device:
     def make_mqtt_request(self, payload: dict):
         ''' Perform a MQTT request'''
         try:
-            self.client.publish("gnf/devices/temp", json.dumps(payload))
-            logger.info(f"[OK] Message [{payload['temperature']}] published to MQTT broker.")
+            self.client.publish(settings.TOPIC, json.dumps(payload))
+            logger.info(f"[OK] Message [{payload}] published to MQTT broker.")
         except Exception as e:
             logger.error(f"[ERROR] {e}")
 
