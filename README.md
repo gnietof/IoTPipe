@@ -17,12 +17,12 @@ The GeoJSON file used belongs to a real flight. But because the position timesta
 ## Configuration file
 This project requires a configuration file with these values:
 
-'''
-ENDPOINT="http://localhost:9000/data"
-#ENDPOINT="http://host.docker.internal:9000/data"
-BROKER="test.mosquitto.org"
-TOPIC="gnf/devices/data"
-'''
+```
+ENDPOINT="http://localhost:9000/data"  
+#ENDPOINT="http://host.docker.internal:9000/data"  
+BROKER="test.mosquitto.org"  
+TOPIC="gnf/devices/data"  
+```
 
 The ENDPOINT using host.docker.internal is required when using Docker to run the application so that the devices can communicate with the broker if using the HTTP protocol.
 This broker does not require credentials and might be replaced with any other broker.
